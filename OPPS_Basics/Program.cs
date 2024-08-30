@@ -3,7 +3,7 @@
 namespace OPPS_Basics
 {
   //Encapsulation Example
-  //Example 1
+  
    public class AccountInfo
     {
         private string accountNumber;
