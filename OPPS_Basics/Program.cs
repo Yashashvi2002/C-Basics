@@ -33,3 +33,42 @@ namespace OPPS_Basics
         
     }
 }
+
+
+namespace AbstractionExample
+{
+    //Abstraction Example
+    //Example 2
+    public abstract class Shape
+    {
+        public abstract void Draw();
+    }
+
+    public class Circle : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Circle is drawn");
+        }
+    }
+
+    public class Rectangle : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Rectangle is drawn");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Shape s;
+            s = new Circle();
+            s.Draw();
+            s = new Rectangle();
+            s.Draw();
+        }
+    }
+}
