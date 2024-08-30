@@ -4,31 +4,58 @@ namespace OPPS_Basics
 {
   //Encapsulation Example
   //Example 1
-   public class Employee
+   public class AccountInfo
     {
-        private string name;
-        private int empId;
-        private int salary;
-        public Employee(string name, int empId, int salary)
+        private string accountNumber;
+        private decimal balance;
+
+        public AccountInfo(string accountNumber, decimal balance)
         {
-            this.name = name;
-            this.empId = empId;
-            this.salary = salary;
+            this.accountNumber = accountNumber;
+            this.balance = balance;
         }
 
-        public void Display()
+        public void Deposit(decimal amount)
         {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("EmpId: " + empId);
-            Console.WriteLine("Salary: " + salary);
+            if (amount > 0)
+            {
+                balance += amount;
+            }
+            else
+            {
+                Console.WriteLine("Invalid amount");
+            }
         }
+
+        public void Withdraw(decimal amount)
+        {
+            if (amount > 0 && balance >= amount)
+            {
+                balance -= amount;
+            }
+            else
+            {
+                Console.WriteLine("Invalid amount");
+            }
+        }
+
+        public void DisplayBalance()
+        {
+            Console.WriteLine("Account Number: " + accountNumber);
+            Console.WriteLine("Balance: " + balance);
+        }
+       
     }
    class Program
     {
         static void Main(string[] args)
         {
-            Employee emp = new Employee("John", 101, 50000);
-            emp.Display();
+            AccountInfo account = new AccountInfo("12345", 1000);
+            account.Deposit(500);
+            account.DisplayBalance();
+            account.Withdraw(200);
+            account.DisplayBalance();
+           
         }
         
     }
