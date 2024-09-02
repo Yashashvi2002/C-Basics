@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OPPS_Basics
+namespace EncapsulationExample
 {
   //Encapsulation Example
   //Example 1
@@ -34,7 +34,7 @@ namespace OPPS_Basics
     }
 }
 
-
+//Abstraction Example
 namespace AbstractionExample
 {
     //Abstraction Example
@@ -69,6 +69,110 @@ namespace AbstractionExample
             s.Draw();
             s = new Rectangle();
             s.Draw();
+        }
+    }
+}
+
+//Inheritance Example
+namespace InheritanceExample
+{
+    //Inheritance Example
+    //Example 3
+    public class Animal
+    {
+        public void Eat()
+        {
+            Console.WriteLine("Eating...");
+        }
+    }
+
+    public class Dog : Animal
+    {
+        public void Bark()
+        {
+            Console.WriteLine("Barking...");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog d = new Dog();
+            d.Eat();
+            d.Bark();
+        }
+    }
+}
+
+//Polymorphism Example
+namespace PolymorphismExample
+{
+    //Polymorphism Example Runtime Polymorphism (Method Overriding)
+    //Example 4
+    public class Shape
+    {
+        public virtual void Draw()
+        {
+            Console.WriteLine("Drawing Shape");
+        }
+    }
+
+    public class Circle : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Drawing Circle");
+        }
+    }
+
+    public class Rectangle : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Drawing Rectangle");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Shape s;
+            s = new Circle();
+            s.Draw();
+            s = new Rectangle();
+            s.Draw();
+        }
+    }
+}
+
+//Polymorphism Example Compile Time Polymorphism (Method Overloading)
+namespace PolymorphismExample
+{
+    //Polymorphism Example Compile Time Polymorphism (Method Overloading)
+    //Example 5
+    public class Add
+    {
+       public int Sum(int a, int b)
+        {
+            return a + b;
+        }
+
+        public int Sum(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Add a = new Add();
+            Console.WriteLine(a.Sum(10, 20));
+            Console.WriteLine(a.Sum(10, 20, 30));
+            
         }
     }
 }
