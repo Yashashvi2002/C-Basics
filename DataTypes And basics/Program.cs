@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace C__Basics_And_OOPS
+namespace DataTypes
 {
     class Program
     {
