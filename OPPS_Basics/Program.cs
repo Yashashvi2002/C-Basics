@@ -2,20 +2,27 @@
 
 namespace EncapsulationExample
 {
-  //Encapsulation Example
-  //Example 1
-   public class Employee
+    //Encapsulation Example
+    //Example 1
+    
+
+    public class Employee
     {
+        // Private fields
         private string name;
         private int empId;
         private int salary;
-        public Employee(string name, int empId, int salary)
+
+        // Constructor with different parameter names
+        public Employee(string empName, int employeeId, int empSalary)
         {
-            this.name = name;
-            this.empId = empId;
-            this.salary = salary;
+            // Assigning parameter values to fields without using 'this'
+            name = empName;
+            empId = employeeId;
+            salary = empSalary;
         }
 
+        // Method to display employee details
         public void Display()
         {
             Console.WriteLine("Name: " + name);
@@ -23,15 +30,19 @@ namespace EncapsulationExample
             Console.WriteLine("Salary: " + salary);
         }
     }
-   class Program
+
+    class Program
     {
         static void Main(string[] args)
         {
+            // Create an instance of the Employee class
             Employee emp = new Employee("John", 101, 50000);
+
+            // Display employee details
             emp.Display();
         }
-        
     }
+
 }
 
 //Abstraction Example
