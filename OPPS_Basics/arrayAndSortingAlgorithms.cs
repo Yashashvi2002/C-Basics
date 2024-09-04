@@ -320,3 +320,53 @@ namespace SortingAlgorithms
         }
     }
 }
+
+
+
+//Logic for removing duplicates from an array
+using System;
+class RemoveDuplicate
+{
+    public static int[] RemoveDuplicates(int[] arr)
+    {
+        int n = arr.Length;
+        int[] temp = new int[n];
+        int j = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            bool isDuplicate = false;
+            for (int k = 0; k < j; k++)
+            {
+                if (arr[i] == temp[k])
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate)
+            {
+                temp[j++] = arr[i];
+            }
+        }
+
+        int[] result = new int[j];
+        for (int i = 0; i < j; i++)
+        {
+            result[i] = temp[i];
+        }
+
+        return result;
+    }
+    public static void Main()
+    {
+        int[] arr = { 1, 2, 2, 3, 4, 4, 4, 5, 5 };
+        int n = arr.Length;
+        int[] result = RemoveDuplicates(arr);
+        for (int i = 0; i < result.Length; i++)
+        {
+            Console.Write(result[i] + " ");
+        }
+    }
+}
+
