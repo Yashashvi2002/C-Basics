@@ -188,6 +188,33 @@ namespace LinkedList
             return -1; // Return -1 if the data is not found
         }
 
+        // Function to remove duplicates without extra space
+        public void RemoveDuplicates()
+        {
+            Node current = head;
+
+            while (current != null && current.next != null)
+            {
+                Node runner = current;
+
+                // Check for any duplicates in subsequent nodes
+                while (runner.next != null)
+                {
+                    if (runner.next.data == current.data)
+                    {
+                        // Remove the duplicate node
+                        runner.next = runner.next.next;
+                    }
+                    else
+                    {
+                        runner = runner.next;
+                    }
+                }
+
+                current = current.next;
+            }
+        }
+
         public void BubbleSort()
         {
             if (head == null) return;
