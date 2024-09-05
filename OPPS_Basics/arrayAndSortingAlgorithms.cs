@@ -370,3 +370,59 @@ class RemoveDuplicate
     }
 }
 
+
+//Dutch National Flag Algorithm
+//Only for sorting 0,1,2 in an array
+//Time Complexity : O(n) and Space Conplexity : O(1)
+
+
+namespace DutchNationFlag
+{
+    class Sorting
+    {
+        public void SortColors(int[] arr)
+        {
+            int low = 0;
+            int high = arr.Length - 1;
+            int mid = 0;
+            while (mid <= high)
+            {
+                if (arr[mid] == 0)
+                {
+                    Swap(arr, low, mid);
+                    low++;
+                    mid++;
+                }
+                else if (arr[mid] == 1)
+                {
+                    mid++;
+                }
+                else
+                {
+                    Swap(arr, mid, high);
+                    high--;
+                }
+            }
+        }
+        void Swap(int[] arr, int i, int j)
+        {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+            int[] nums = { 2, 0, 2, 1, 1, 0 };
+            Sorting sort = new Sorting();
+            sort.SortColors(nums);
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write(nums[i] + " ");
+            }
+        }
+    }
+}
