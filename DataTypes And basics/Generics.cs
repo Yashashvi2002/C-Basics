@@ -39,6 +39,8 @@ namespace Generics
             Console.WriteLine("]");
         }
     }
+
+    // Generic class with two type parameters
     class KeyValuePair<TKey, TValue>
     {
         public TKey Key { get; set; }
@@ -50,6 +52,8 @@ namespace Generics
             Console.WriteLine("Value type: " + typeof(TValue) + ", value: " + Value);
         }
     }
+
+    // Generic class with one type parameter
     public class MyGenericClass<T>
     {
         private T genericField;
