@@ -416,7 +416,7 @@ namespace DutchNationFlag
         static void Main()
         {
             int[] nums = { 2, 0, 2, 1, 1, 0 };
-            Sorting sort = new Sorting();
+            Sorting sort = new Sorting();   
             sort.SortColors(nums);
 
             for (int i = 0; i < nums.Length; i++)
