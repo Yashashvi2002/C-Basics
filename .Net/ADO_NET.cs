@@ -54,23 +54,58 @@ namespace ADO_DOTNET
 //4          Emily           Davis           HR Manager           $65,000.00
 
 
-//Inserting data into the database
+//Creating a table in the database
 namespace ADO_DOTNET
 {
-    internal class Program
+    class Program
     {
         static void Main()
         {
-            ConnectToDatabase();
+            Console.WriteLine("Enter the Number of data entry: ");
+            int n = int.Parse(Console.ReadLine());
+
+            CreateTable();
+            for (int i = 0; i < n; i++)
+            {
+                InsertData();
+            }
+            Update();
+            Delete();
+
         }
 
-        static void ConnectToDatabase()
+        //Creating a table in the database
+        static void CreateTable()
+        {
+            string cs = "Data Source=LAPTOP-TF84CB6M\\SQLEXPRESS;Initial Catalog=ado_db;Integrated Security=True";
+            string query = @"
+                CREATE TABLE Employees (
+                    EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+                    FirstName NVARCHAR(50),
+                    LastName NVARCHAR(50),
+                    Position NVARCHAR(50),
+                    Salary DECIMAL(10, 2)
+                );
+            ";
+            using SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Table created successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+        }
+
+        //Inserting data into the table
+        static void InsertData()
         {
             string cs = "Data Source=LAPTOP-TF84CB6M\\SQLEXPRESS;Initial Catalog=ado_db;Integrated Security=True";
             using SqlConnection con = new SqlConnection(cs);
-
-            Console.WriteLine("Employee ID");
-            string id = Console.ReadLine();
             Console.WriteLine("First Name");
             string firstName = Console.ReadLine();
             Console.WriteLine("Last Name");
@@ -79,22 +114,16 @@ namespace ADO_DOTNET
             string position = Console.ReadLine();
             Console.WriteLine("Salary");
             string salary = Console.ReadLine();
-
-            //Query for Inserting table
-            string query = "INSERT INTO Employees (EmployeeID, FirstName, LastName, Position, Salary) VALUES (@EmployeeID, @FirstName, @LastName, @Position, @Salary)";
-
+            string query = "INSERT INTO Employees (FirstName, LastName, Position, Salary) VALUES (@FirstName, @LastName, @Position, @Salary)";
             SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@EmployeeID", id);
             cmd.Parameters.AddWithValue("@FirstName", firstName);
             cmd.Parameters.AddWithValue("@LastName", lastName);
             cmd.Parameters.AddWithValue("@Position", position);
             cmd.Parameters.AddWithValue("@Salary", salary);
-
             try
             {
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
-
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine("Data inserted successfully");
@@ -108,25 +137,15 @@ namespace ADO_DOTNET
             {
                 Console.WriteLine("Error: " + e.Message);
             }
-        }
-    }
-}
 
-//Updating data in the database
-namespace ADO_DOTNET
-{
-    internal class Program
-    {
-        static void Main()
-        {
-            ConnectToDatabase();
+
         }
 
-        static void ConnectToDatabase()
+        //Updating data in the table
+        static void Update()
         {
             string cs = "Data Source=LAPTOP-TF84CB6M\\SQLEXPRESS;Initial Catalog=ado_db;Integrated Security=True";
             using SqlConnection con = new SqlConnection(cs);
-
             Console.WriteLine("Employee ID");
             string id = Console.ReadLine();
             Console.WriteLine("First Name");
@@ -137,29 +156,24 @@ namespace ADO_DOTNET
             string position = Console.ReadLine();
             Console.WriteLine("Salary");
             string salary = Console.ReadLine();
-            
-            //Query for Updating table
-            string query = "UPDATE Employees SET FirstName = @FirstName, LastName = @LastName, Position = @Position, Salary = @Salary  WHERE EmployeeID = @EmployeeID";
-
+            string query = "UPDATE Employees SET FirstName = @FirstName, LastName = @LastName, Position = @Position, Salary = @Salary WHERE EmployeeID = @EmployeeID";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@EmployeeID", id);
             cmd.Parameters.AddWithValue("@FirstName", firstName);
             cmd.Parameters.AddWithValue("@LastName", lastName);
             cmd.Parameters.AddWithValue("@Position", position);
             cmd.Parameters.AddWithValue("@Salary", salary);
-
             try
             {
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
-
                 if (rowsAffected > 0)
                 {
-                    Console.WriteLine("Data Updated successfully");
+                    Console.WriteLine("Data updated successfully");
                 }
                 else
                 {
-                    Console.WriteLine("Data Updation failed");
+                    Console.WriteLine("Data updation failed");
                 }
             }
             catch (Exception e)
@@ -167,47 +181,28 @@ namespace ADO_DOTNET
                 Console.WriteLine("Error: " + e.Message);
             }
         }
-    }
-}
 
-
-//Deleting data from the database
-namespace ADO_DOTNET
-{
-    internal class Program
-    {
-        static void Main()
-        {
-            ConnectToDatabase();
-        }
-
-        static void ConnectToDatabase()
+        //Deleting data from the table
+        static void Delete()
         {
             string cs = "Data Source=LAPTOP-TF84CB6M\\SQLEXPRESS;Initial Catalog=ado_db;Integrated Security=True";
             using SqlConnection con = new SqlConnection(cs);
-
             Console.WriteLine("Employee ID");
             string id = Console.ReadLine();
-
-            //Query for Deleting a single row using EmployeeID(primary key)
             string query = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
-
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@EmployeeID", id);
-
-
             try
             {
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
-
                 if (rowsAffected > 0)
                 {
-                    Console.WriteLine("Data Deleted successfully");
+                    Console.WriteLine("Data deleted successfully");
                 }
                 else
                 {
-                    Console.WriteLine("Data Deletion failed");
+                    Console.WriteLine("Data deletion failed");
                 }
             }
             catch (Exception e)
