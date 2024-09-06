@@ -169,3 +169,51 @@ namespace ADO_DOTNET
         }
     }
 }
+
+
+//Deleting data from the database
+namespace ADO_DOTNET
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            ConnectToDatabase();
+        }
+
+        static void ConnectToDatabase()
+        {
+            string cs = "Data Source=LAPTOP-TF84CB6M\\SQLEXPRESS;Initial Catalog=ado_db;Integrated Security=True";
+            using SqlConnection con = new SqlConnection(cs);
+
+            Console.WriteLine("Employee ID");
+            string id = Console.ReadLine();
+
+            //Query for Deleting a single row using EmployeeID(primary key)
+            string query = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@EmployeeID", id);
+
+
+            try
+            {
+                con.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Data Deleted successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Data Deletion failed");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+        }
+    }
+}
