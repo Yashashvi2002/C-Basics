@@ -94,10 +94,10 @@ namespace Delegates
     {
         static void Main()
         {
-            CallBack callback = PrintNumber;
+            CallBack callback = Print;
             Iteration.PrintNumbers(callback);
         }
-        static void PrintNumber(int num)
+        static void Print(int num)
         {
             Console.WriteLine(num);
         }
