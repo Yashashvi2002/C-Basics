@@ -85,3 +85,57 @@ namespace Delegate
         }
     }
 }
+
+
+//Delegate Types : Func , Action, Predicate
+namespace DelegateType
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Fuc: Function that takes input and returns output
+            Func<int, int, int> add = (a, b) => a + b;
+            Console.WriteLine("Addition is: " + add(10, 20));
+
+            Func<int, string> value = GetMessage;
+            Console.WriteLine(value(100));
+
+            //Action: Function that takes input but does not return output
+            Action<int, int> sum = (a, b) => Console.WriteLine("Sum is: " + (a + b));
+            sum(10, 20);
+
+            Action<string> print = PrintMessage;
+            print("Hello World");
+
+            //Predicate: Function that takes input and returns boolean output
+            Predicate<int> isEven = (a) => a % 2 == 0;
+            Console.WriteLine(isEven(10));
+
+            Predicate<int> isPositive = CheckNum;
+            Console.WriteLine(isPositive(10));
+            Console.WriteLine(isPositive(-20));
+        }
+
+        public static int Add(int a, int b)
+        {
+            return a + b;
+        }
+
+        public static string GetMessage(int value)
+        {
+            return "Value is: " + value;
+        }
+        public static void PrintMessage(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        public static bool CheckNum(int num)
+        {
+            return num > 0;
+        }
+    }
+}
+
+
