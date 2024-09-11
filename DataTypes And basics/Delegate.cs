@@ -86,6 +86,35 @@ namespace Delegate
     }
 }
 
+//Delegate basically used for communication and to call a method from another class(callback)
+namespace Delegates
+{
+    public delegate void CallBack(int num);
+    class Program
+    {
+        static void Main()
+        {
+            CallBack callback = PrintNumber;
+            Iteration.PrintNumbers(callback);
+        }
+        static void PrintNumber(int num)
+        {
+            Console.WriteLine(num);
+        }
+    }
+
+    class Iteration
+    {
+        public static void PrintNumbers(CallBack callback)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                callback(i);
+            }
+        }
+    }
+}
+
 
 //Delegate Types : Func , Action, Predicate
 namespace DelegateType
