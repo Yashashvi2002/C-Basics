@@ -52,6 +52,13 @@ namespace Delegate
             obj(20, 10);
 
 
+
+            //Multicast Delegate 
+            Console.WriteLine("\nMulticast Delegate");
+            obj = Multiplication;
+            obj += Addition;
+            obj(10, 20);
+
         }
     }
 }
