@@ -55,3 +55,33 @@ namespace Delegate
         }
     }
 }
+
+
+
+//Delegate to access Private Method of a class from another class
+namespace Delegate
+{
+    public delegate void Delegate(string str);
+    class Program
+    {
+        static void Main()
+        {
+            Delegate del = Print;
+            Test.TestMethod(del);
+        }
+
+        private static void Print(string str)
+        {
+            Console.WriteLine(str);
+        }
+    }
+
+
+    class Test
+    {
+        public static void TestMethod(Delegate del)
+        {
+            del("Hello World");
+        }
+    }
+}
