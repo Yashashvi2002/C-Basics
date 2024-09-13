@@ -106,6 +106,24 @@ namespace BinarySearchTree
                 }
             }
         }
+
+        // Method to mirror the tree
+        public void mirror(Node root)
+        {
+            //code here
+            if (root == null)
+            {
+                return;
+            }
+
+            Node temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+            mirror(root.left);
+            mirror(root.right);
+
+        }
     }
 
     class Program
@@ -125,6 +143,8 @@ namespace BinarySearchTree
             bst.PreOrderTraversal(root);
             Console.WriteLine("\nPost-order traversal of the BST:");
             bst.PostOrderTraversal(root);
+            Console.WriteLine("\nMirror of the tree:");
+            bst.mirror(root);
 
 
         }
